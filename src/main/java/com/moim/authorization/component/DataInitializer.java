@@ -34,7 +34,11 @@ public class DataInitializer implements ApplicationRunner {
 	public void run(ApplicationArguments args) throws Exception {
 
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		User user = User.builder().username("cdssw").password(passwordEncoder.encode("1234")).userType(0).build();
+		User user = User.builder()
+				.username("cdssw@naver.com")
+				.password(passwordEncoder.encode("1234"))
+				.userType(0)
+				.build();
 		userRepository.save(user);
 	}
 

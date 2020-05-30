@@ -25,12 +25,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * 2020. 5. 15.   cdssw            최초 생성
  * </pre>
  */
-@EnableWebSecurity
+@EnableWebSecurity // 직접 관리하는 User 테이블을 통해 client(사람)인지 확인
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	// UserDetailsService 인터페이스를 구현한 UserDetailsServiceImpl이 DI된다.
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
+	// h2-console용 셋팅
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
@@ -39,18 +41,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.headers().disable();
 	}
 	
+	/* client(사용자) 인증처리 방식 등록
+	 * DaoAuthenticationProvider는 UserDetailsService로 사용자 정보를 DB에서 조회 UserDetails 객체를 리턴
+	 * 요청된 정보와 비교 후 인증처리
+	 */
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		// 사용자 DB 인증 서비스 등록
-		// 로그인 하면 여기 등록한 provider로 로그인한 사용자의 id(username)과 password를 확인
 		auth.authenticationProvider(authenticationProvider());
-	}
-	
-	// AuthConfig에 등록한 실제 인증처리를 위한 Manager
-	@Bean
-	@Override
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManager();
 	}
 	
 	@Bean
@@ -58,12 +55,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
 	
-	// 인증처리를 DB를 통해 하도록 DaoAuthenticationProvider로 설정
+	// 인증처리를 DB를 통해 하도록 AuthenticationProvider(DaoAuthenticationProvider 확장)로 설정
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
-		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-		authenticationProvider.setUserDetailsService(userDetailsService); // USER 테이블을 조회하도록 서비스 주입
-		authenticationProvider.setPasswordEncoder(passwordEncoder()); // 비밀번호 검증용 주입
+		CustomAuthenticationProvider authenticationProvider = new CustomAuthenticationProvider();
+		authenticationProvider.setUserDetailsService(userDetailsService); // 사용자 정의 UserDetailsService 주입
+		authenticationProvider.setPasswordEncoder(passwordEncoder()); // password encoder 주입
 		return authenticationProvider;
 	}
+	
+	// applicationManager 빈등록 - AuthConfig에서 Autowired 됨
+	@Bean
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManager();
+	}	
 }
