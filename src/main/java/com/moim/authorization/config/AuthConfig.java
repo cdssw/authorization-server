@@ -112,7 +112,7 @@ public class AuthConfig extends AuthorizationServerConfigurerAdapter {
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		// 클라이언트에 대한 관리를 oauth_client_details 테이블로 관리
-		clients.withClientDetails(clientDetailsService); // clientDetailsService는 아래 @Bean @Primary로 정의 되나 JdbcClientDetailsService
+		clients.withClientDetails(clientDetailsService); // clientDetailsService는 아래 @Bean @Primary로 정의된 JdbcClientDetailsService
 	}
 	
 	// Endpoint에 대한 정보를 설정하는 부분
