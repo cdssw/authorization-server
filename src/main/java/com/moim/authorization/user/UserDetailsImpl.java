@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * UserInformation.java
+ * UserDetailsImpl.java
  * 
  * @author cdssw
  * @since 2020. 5. 15.
@@ -23,7 +23,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class UserInformation implements UserDetails {
+public class UserDetailsImpl implements UserDetails {
 
 	/**
 	 * 

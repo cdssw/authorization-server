@@ -4,7 +4,7 @@ server:
 security:
   oauth2:
     client:
-      id: auth_id # client를 인증하기 위한 ID
+      client-id: auth_id # client를 인증하기 위한 ID
       client-secret: auth_secret # client를 인증하기 위한 Password
     resource:
       jwt:

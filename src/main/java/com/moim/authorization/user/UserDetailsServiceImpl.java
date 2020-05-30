@@ -48,8 +48,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		return makeLoginUser(user);
 	}
 	
-	private UserInformation makeLoginUser(User user) {
-		UserInformation loginUser = new UserInformation();
+	private UserDetailsImpl makeLoginUser(User user) {
+		UserDetailsImpl loginUser = new UserDetailsImpl();
 		
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		switch(user.getUserType()) {

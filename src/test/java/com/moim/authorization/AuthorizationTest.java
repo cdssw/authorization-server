@@ -82,6 +82,41 @@ public class AuthorizationTest {
 	
 	@Test
 	public void testObtainAccessTokenByRefreshToken() throws Exception {
-		// todo.
+		// given
+		MultiValueMap<String, String> p = new LinkedMultiValueMap<>();
+		p.add("grant_type", "password");
+		p.add("client_id", CLIENT_ID);
+		p.add("username", "cdssw@naver.com");
+		p.add("password", "1234");
+		p.add("common", "common");
+		p.add("scope", "read");
+		
+		final MvcResult r = mvc.perform(post("/oauth/token")
+				.params(p)
+				.with(httpBasic(CLIENT_ID, CLIENT_SECRET))
+				.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andReturn();
+		
+		String content = r.getResponse().getContentAsString();
+		JacksonJsonParser jsonParser = new JacksonJsonParser();
+		String refreshToken = jsonParser.parseMap(content).get("refresh_token").toString();
+		
+		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+		params.add("grant_type", "refresh_token");
+		params.add("scope", "read");
+		params.add("refresh_token", refreshToken);
+		
+		// when
+		final MvcResult result = mvc.perform(post("/oauth/token")
+				.params(params)
+				.with(httpBasic(CLIENT_ID, CLIENT_SECRET))
+				.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andReturn();
+		
+		// then
+		content = result.getResponse().getContentAsString();
+		log.info(jsonParser.parseMap(content).get("access_token").toString());		
 	}
 }
