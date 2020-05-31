@@ -1,0 +1,24 @@
+server:
+  port: 8095
+  
+security:
+  oauth2:
+    client:
+      client-id: auth_id # client를 인증하기 위한 ID
+      client-secret: auth_secret # client를 인증하기 위한 Password
+    resource:
+      jwt:
+        key-value: jwt_secret_key # jwt를 암호화하기 위한 비밀키
+        
+spring:
+  datasource:
+    url: 
+    username: 
+    password: 
+    driver-class-name: org.mariadb.jdbc.Driver
+    initialization-mode: never # 처음엔 always로 설정하여 schema.sql이 실행되어 oauth_client_details이 생성되도록 설정
+    platform: oauth2 # always시 schema.sql이 실행되도록 설정
+  jpa:
+    hibernate:
+      # none: 미생성, create: 항상 다시 생성, create-drop: 시작시 생성후 종료시 제거, update: 추가 테이블/컬럼 생성(삭제하진 않음), verify: 비교
+      ddl-auto: none

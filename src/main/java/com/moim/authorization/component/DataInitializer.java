@@ -33,13 +33,15 @@ public class DataInitializer implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 
-		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		User user = User.builder()
-				.username("cdssw@naver.com")
-				.password(passwordEncoder.encode("1234"))
-				.userType(0)
-				.build();
-		userRepository.save(user);
+		if(userRepository.findByUsername("cdssw@naver.com") == null) {
+			PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+			User user = User.builder()
+					.username("cdssw@naver.com")
+					.password(passwordEncoder.encode("1234"))
+					.userType(0)
+					.build();
+			userRepository.save(user);
+		}
 	}
 
 }

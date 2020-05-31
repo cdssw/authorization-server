@@ -14,7 +14,7 @@ import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.web.FilterChainProxy;
-import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -26,9 +26,9 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 
 import lombok.extern.slf4j.Slf4j;
 
+@ActiveProfiles("test")
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = AuthorizationServerApplication.class)
-@TestPropertySource(properties = { "spring.config.location=classpath:application.yml" })
 @Slf4j
 public class AuthorizationTest {
 

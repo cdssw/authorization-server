@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -31,15 +30,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	// UserDetailsService 인터페이스를 구현한 UserDetailsServiceImpl이 DI된다.
 	@Autowired
 	private UserDetailsService userDetailsService;
-	
-	// h2-console용 셋팅
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-			.antMatchers("/h2-console/**").permitAll()
-			.and().csrf().disable()
-			.headers().disable();
-	}
 	
 	/* client(사용자) 인증처리 방식 등록
 	 * DaoAuthenticationProvider는 UserDetailsService로 사용자 정보를 DB에서 조회 UserDetails 객체를 리턴

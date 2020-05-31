@@ -8,10 +8,4 @@ security:
       client-secret: auth_secret # client를 인증하기 위한 Password
     resource:
       jwt:
-        key-value: jwt_secret_key # jwt를 암호화하기 위한 비밀키
-        
-spring:
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+        key-value: jwt_secret_key # jwt를 암호화하기 위한 비밀키       

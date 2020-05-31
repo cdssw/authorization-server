@@ -92,6 +92,11 @@
 			<artifactId>spring-cloud-starter-oauth2</artifactId>
 		</dependency>
 		
+		<!-- mariadb -->
+		<dependency>
+		    <groupId>org.mariadb.jdbc</groupId>
+		    <artifactId>mariadb-java-client</artifactId>
+	    </dependency>		
 	</dependencies>
 
 	<dependencyManagement>
