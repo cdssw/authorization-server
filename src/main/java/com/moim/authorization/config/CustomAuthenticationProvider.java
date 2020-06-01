@@ -35,12 +35,12 @@ public class CustomAuthenticationProvider extends DaoAuthenticationProvider {
 			LoginDto dto = modelMapper.map(authentication.getDetails(), LoginDto.class);
 			if("password".equals(dto.getGrant_type())) {
 				if(dto.getCommon() == null) {
-					throw new BadCredentialsException(messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials"));
+					throw new BadCredentialsException(messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials","Bad credentials"));
 				}
 				
 				PasswordEncoder passwordEncoder = getPasswordEncoder();
 				if(!passwordEncoder.matches("common", passwordEncoder.encode(dto.getCommon()))) {
-					throw new BadCredentialsException(messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials"));
+					throw new BadCredentialsException(messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials","Bad credentials"));
 				}
 			}
 		}
