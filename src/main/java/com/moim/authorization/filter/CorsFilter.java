@@ -28,7 +28,7 @@ import org.springframework.stereotype.Component;
  * </pre>
  */
 @Component
-@Order(Ordered.HIGHEST_PRECEDENCE) // oauth2 token 인증보다 앞단계 필터에서 path 검증로직을 추가
+@Order(Ordered.HIGHEST_PRECEDENCE) // 앞단계 필터에서 CORS 처리
 public class CorsFilter implements Filter {
 
 	@Override
