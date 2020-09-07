@@ -64,7 +64,7 @@ public class AuthConfig extends AuthorizationServerConfigurerAdapter {
 	 * AuthenticationManager 인터페이스의 구현체 ProviderManager가 실제 authenticate를 호출한다.
 	 * 
 	 * ProviderManager는 AuthenticationProvider 인터페이스를 has-a 관계로 가지고 있다.
-	 * AuthenticationProvider 인터페이스는 authenticate 메서를 가지고 있다.
+	 * AuthenticationProvider 인터페이스는 authenticate 메서드를 가지고 있다.
 	 * 
 	 * ProviderManager에서 authenticate 메서드를 호출하면 AuthenticationProvider의 authenticate 메서드를 호출하게 된다.
 	 * AuthenticationProvider 의 구현체는 3가지(Dao, Ldap, OpenId)가 있는데 여기에선 DaoAuthenticationProvider를 사용한다.
