@@ -60,6 +60,15 @@ public class DataInitializer implements ApplicationRunner {
 					.build();
 			userRepository.save(user);
 		}
+		
+		if(userRepository.findByUsername("test@naver.com") == null) {
+			User user = User.builder()
+					.username("test@naver.com")
+					.password(passwordEncoder.encode("1234"))
+					.userType(0)
+					.build();
+			userRepository.save(user);
+		}
 	}
 
 }
