@@ -1,6 +1,7 @@
 package com.moim.authorization.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -42,10 +43,46 @@ public class User extends BaseTimeEntity {
     @Column(nullable = false)
     private int userType;
     
+	private String userNm;
+	
+	private String userNickNm;
+	
+	private String phone;
+	
+	private String mainTalent;
+	
+	private String talent;
+	
+	private String interest;
+	
+	private String avatarPath;
+	
+	@Embedded
+	private Policy policy;
+	
 	@Builder
-	public User(String username, String password, int userType) {
+	public User(String username
+			, String password
+			, int userType
+			, String userNm
+			, String userNickNm
+			, String phone
+			, String mainTalent
+			, String talent
+			, String interest
+			, String avatarPath
+			, Policy policy
+			) {
 		this.username = username;
 		this.password = password;
 		this.userType = userType;
+		this.userNm = userNm;
+		this.userNickNm = userNickNm;
+		this.phone = phone;
+		this.mainTalent = mainTalent;
+		this.talent = talent;
+		this.interest = interest;
+		this.avatarPath = avatarPath;
+		this.policy = policy;
 	}
 }
