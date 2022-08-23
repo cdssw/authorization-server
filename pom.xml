@@ -15,8 +15,8 @@
 	<description>MSA Authorization Server</description>
 
 	<properties>
-		<java.version>1.8</java.version>
-		<spring-cloud.version>Hoxton.SR4</spring-cloud.version>
+		<java.version>11</java.version>
+		<spring-cloud.version>Hoxton.SR11</spring-cloud.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 	</properties>
 
@@ -31,10 +31,16 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		
+		<!-- h2 외부접속 처리 -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
 		</dependency>
 		
 		<dependency>
@@ -103,6 +109,13 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
+        
+		<!-- java11 업그레이드 관련 의존성 -->
+		<dependency>
+		    <groupId>com.sun.xml.bind</groupId>
+		    <artifactId>jaxb-impl</artifactId>
+		    <version>3.0.2</version>
+		</dependency>        
 	</dependencies>
 
 	<dependencyManagement>
