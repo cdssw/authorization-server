@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Profile;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@Profile("test")
+@Profile("local")
 public class H2ServerConfig {
 
 	@Bean
