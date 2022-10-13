@@ -67,22 +67,6 @@ public class DataInitializer implements ApplicationRunner {
 			userRepository.save(user);
 		}
 		
-		if(userRepository.findByUsername("kimkh093@nate.com") == null) {
-			User user = User.builder()
-					.username("kimkh093@nate.com")
-					.password(passwordEncoder.encode("1234"))
-					.userType(0)
-					.userNm("김규현")
-					.userNickNm("Developer")
-					.phone("010-5555-5555")
-					.mainTalent("개발")
-					.talent("모바일,자바,안드로이드,아이폰")
-					.interest("테스트,휴식")
-					.policy(Policy.builder().serviceYn(true).privateYn(true).profileYn(true).build())
-					.build();
-			userRepository.save(user);
-		}		
-		
 		if(userRepository.findByUsername("michael@naver.com") == null) {
 			User user = User.builder()
 					.username("michael@naver.com")
@@ -94,6 +78,22 @@ public class DataInitializer implements ApplicationRunner {
 					.mainTalent("샘플")
 					.talent("그림,편집,컴퓨터")
 					.interest("유튜브,산")
+					.policy(Policy.builder().serviceYn(true).privateYn(true).profileYn(true).build())
+					.build();
+			userRepository.save(user);
+		}
+		
+		if(userRepository.findByUsername("nss@nss.com") == null) {
+			User user = User.builder()
+					.username("nss@nss.com")
+					.password(passwordEncoder.encode("1189"))
+					.userType(0)
+					.userNm("Newsongsearch")
+					.userNickNm("Nss")
+					.phone("010-0000-0000")
+					.mainTalent("Nss")
+					.talent("Elastic")
+					.interest("None")
 					.policy(Policy.builder().serviceYn(true).privateYn(true).profileYn(true).build())
 					.build();
 			userRepository.save(user);
