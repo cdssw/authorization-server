@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ENC(IkULUmvG/bf3e7NXEWdau+iPSJjFSXVTzIpix9e4DostNYHg3G2pEHEHf+5AdLumVjIeLmadgEc=)
-    username: ENC(N9pYbAnv7eHqpZDzv1eg9Q==)
-    password: ENC(1llKu3JmvdGnth0LubkMm12Xy1ob4f4U)
+    url: ENC(cdEuxjDPSUr1PH1iSHpCl3xF0hy2cKREygTysvZ0EAscCRGnCd7d2HaUe68Y+n+caPvnexYZapc=)
+    username: ENC(9GYYVO9maJjw4iYKJCJi9A==)
+    password: ENC(1hmCwjbc3GOWYkvP6Ir0In21a2jEKQQe)
     driver-class-name: org.mariadb.jdbc.Driver
     initialization-mode: never # 처음엔 always로 설정하여 schema.sql이 실행되어 oauth_client_details이 생성되도록 설정
     platform: oauth2 # always시 schema.sql이 실행되도록 설정
